@@ -26,12 +26,9 @@ jobs:
 
       - name: set image tag
         env:
-          TAG_2: ${{ github.ref_name }}
+          TAG: ${{ github.ref_name }}
         run: |
-          echo ${TAG_2}
-          jq '.' ${GITHUB_EVENT_PATH}
-          TAG=$(jq '.tag' ${GITHUB_EVENT_PATH})
-          if [[ "${TAG}" == "null" ]]; then
+          if [[ "${TAG}" == "main" ]]; then
             TAG=latest
           fi
           echo "TAG=${TAG}" >> $GITHUB_ENV
