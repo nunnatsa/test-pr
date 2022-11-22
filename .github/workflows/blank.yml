@@ -25,9 +25,10 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: set image tag
+        env:
+          TAG: ${{ github.ref_name }}
         run: |
-          TAG=$(jq '.tag' ${GITHUB_EVENT_PATH})
-          if [[ "${TAG}" == "null" ]]; then
+          if [[ "${TAG}" == "main" ]]; then
             TAG=latest
           fi
           echo "TAG=${TAG}" >> $GITHUB_ENV
