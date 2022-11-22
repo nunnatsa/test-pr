@@ -27,7 +27,7 @@ jobs:
       - name: set image tag
         run: |
           TAG=$(jq '.tag' ${GITHUB_EVENT_PATH})
-          if [[ "${TAG}" $ne "null" ]]; then
+          if [[ "${TAG}" == "null" ]]; then
             TAG=latest
           fi
           echo "TAG=${TAG}" >> $GITHUB_ENV
