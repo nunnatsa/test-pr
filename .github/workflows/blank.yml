@@ -25,6 +25,8 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: set latest tag
-        run: echo $(jq '.push.ref' ${GITHUB_EVENT_PATH})
+        run: |
+          REF=$(jq '.push.ref' ${GITHUB_EVENT_PATH})
+          echo ${REF}
 
 
