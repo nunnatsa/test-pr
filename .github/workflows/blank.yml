@@ -24,7 +24,13 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - name: set latest tag
-        run: jq '.' ${GITHUB_EVENT_PATH}
+      - name: set image tag
+        run: |
+          TAG=$(jq '.tag' ${GITHUB_EVENT_PATH})
+          if [[ "${TAG}" $ne "null" ]]; then
+            TAG=latest
+          fi
+          echo "TAG=${TAG}" >> $GITHUB_ENV
 
-
+      - name: build image
+        run: echo ${TAG}
