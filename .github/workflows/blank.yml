@@ -31,7 +31,4 @@ jobs:
           if [[ "${TAG}" == "main" ]]; then
             TAG=latest
           fi
-          echo "TAG=${TAG}" >> $GITHUB_ENV
-
-      - name: build image
-        run: echo ${TAG}
+          echo ${TAG}
